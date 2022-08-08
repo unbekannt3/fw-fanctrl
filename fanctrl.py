@@ -6,7 +6,8 @@ import json
 
 class FanController:
     ## constants
-    CORE_NUMBER = 4
+    CORE_NUMBER = 12 # acutal amount of cores
+    CORE_NUMBERS = [0,4,8,12,16,17,18,19,20,21,22,23] # core numbers as from 'sensors -j'
 
     ## state
     speed = 0
@@ -65,7 +66,7 @@ class FanController:
                 executable="/bin/bash",
             ).stdout
         )
-        for i in range(0, self.CORE_NUMBER):
+        for i in self.CORE_NUMBERS:
             sumCoreTemps += float(
                 sensorsOutput["coretemp-isa-0000"]["Core " + str(i)][
                     "temp" + str(i + 2) + "_input"
